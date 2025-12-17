@@ -6,12 +6,23 @@
 //
 
 import SwiftUI
+import KeyboardShortcuts
 
-struct SettingsView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+public struct SettingsView: View {
+    public var body: some View {
+        Form {
+            Section(header: Text("General")) {
+                KeyboardShortcuts.Recorder("Capture Screenshot:", name: .toggleScreenshot)
+            }
+        }
+        .padding()
+        .frame(width: 300, height: 150)
+        .background(WindowAccessor { window in
+            window?.level = .floating
+        })
     }
 }
+
 
 #Preview {
     SettingsView()

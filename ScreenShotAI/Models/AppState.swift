@@ -1,4 +1,4 @@
-import Foundation
+import OSLog
 import SwiftUI
 import Combine
 import KeyboardShortcuts
@@ -14,14 +14,15 @@ class AppState: ObservableObject {
     
     private let screenshotManager = ScreenshotManager()
     private let ocrService = OCRService()
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "ScreenShotAI", category: "AppState")
     
     init() {
-        print("DEBUG: AppState initializing...")
+        logger.debug("AppState initializing...")
         
         // Register global shortcut listener
         KeyboardShortcuts.onKeyUp(for: .toggleScreenshot) { [weak self] in
-            print("DEBUG: Shortcut triggered in AppState")
             guard let self = self else { return }
+            self.logger.debug("Global shortcut triggered")
             
             // We need to jump back to MainActor to update published properties and manage UI flow
             Task { @MainActor in
@@ -30,6 +31,8 @@ class AppState: ObservableObject {
         }
     }
     
+    /// Initiates the screenshot flow: Capture -> OCR -> Display.
+    /// - Note: This runs asynchronously and updates the published state.
     func startScreenshotFlow() {
         // Run in a detached task to avoid blocking the main thread during capture initiation
         Task {
@@ -62,12 +65,12 @@ class AppState: ObservableObject {
                 self.isProcessing = false
                 if let screenshotError = error as? ScreenshotError, case .userCancelled = screenshotError {
                     // Ignore user cancellation, don't show error window
-                    print("User cancelled screenshot.")
+                    logger.info("User cancelled screenshot operation")
                 } else {
                     self.errorMessage = error.localizedDescription
                     // Show window to display error
                     self.showQueryWindow = true
-                    print("Error in screenshot flow: \(error.localizedDescription)")
+                    logger.error("Error in screenshot flow: \(error.localizedDescription)")
                 }
             }
         }

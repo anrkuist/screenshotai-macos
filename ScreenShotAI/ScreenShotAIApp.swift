@@ -1,9 +1,3 @@
-//
-//  ScreenShotAIApp.swift
-//  ScreenShotAI
-//
-//  Created by augusto on 16/12/2025.
-//
 
 
 import SwiftUI
@@ -20,14 +14,15 @@ struct ScreenshotAIApp: App {
             MenuBarView()
                 .environmentObject(appState)
         }
-        .menuBarExtraStyle(.menu) // Changed to .menu for standard dropdown behavior
+        .menuBarExtraStyle(.menu) 
         
         Window("AI Query", id: "query") {
             QueryWindow()
                 .environmentObject(appState)
                 .frame(minWidth: 500, minHeight: 600)
                 .onOpenURL { url in
-                    print("DEBUG: Received URL: \(url.absoluteString)")
+                    // Handle URL opening logic
+
                     if url.scheme == "screenshotai" && url.host == "capture" {
                         appState.startScreenshotFlow()
                     }
@@ -40,7 +35,7 @@ struct ScreenshotAIApp: App {
         }
         .handlesExternalEvents(matching: Set(arrayLiteral: "query", "capture"))
         // Observe appState to open window programmatically
-        .onChange(of: appState.showQueryWindow) { newValue in
+        .onChange(of: appState.showQueryWindow) { _, newValue in
             if newValue {
                 openWindow(id: "query")
                 NSApp.activate(ignoringOtherApps: true)
@@ -56,7 +51,7 @@ struct ScreenshotAIApp: App {
 
     
     init() {
-        print("DEBUG: ScreenshotAIApp initializing...")
+
         // Set the app to be an accessory so it doesn't show in the Dock
         NSApplication.shared.setActivationPolicy(.accessory)
     }

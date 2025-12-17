@@ -1,3 +1,11 @@
+//
+//  ScreenshotError.swift
+//  ScreenShotAI
+//
+//  Created by augusto on 16/12/2025.
+//
+
+
 import Foundation
 
 enum ScreenshotError: Error, LocalizedError {

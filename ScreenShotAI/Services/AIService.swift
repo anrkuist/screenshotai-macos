@@ -6,9 +6,7 @@ class AIService {
     private let openAI: OpenAI
     
     init() {
-        print("DEBUG: AIService initializing...")
         if Config.useGemini {
-            print("DEBUG: Configuring for Gemini...")
             let configuration = OpenAI.Configuration(
                 token: Config.geminiKey,
                 host: "generativelanguage.googleapis.com", // Google's OpenAI endpoint
@@ -16,19 +14,16 @@ class AIService {
                 basePath: "/v1beta/openai/"
             )
             self.openAI = OpenAI(configuration: configuration)
-            print("DEBUG: OpenAI instance created with Gemini config.")
         } else {
-            print("DEBUG: Configuring for OpenAI...")
             self.openAI = OpenAI(apiToken: Config.openAIKey)
-            print("DEBUG: OpenAI instance created with standard config.")
         }
     }
     
     func query(context: String, question: String) async throws -> String {
         let prompt = "Context from screenshot:\n\(context)\n\nUser question:\n\(question)"
         
-        // Use Gemini Flash if configured, else default to GPT 3.5 Turbo
-        let model: Model = Config.useGemini ? "gemini-2.5-flash" : .gpt3_5Turbo
+        // Use Gemini if configured, else default to ChatGPT
+        let model: Model = Config.useGemini ? "gemini-2.5-flash" : .gpt4_1
         
         guard let message = ChatQuery.ChatCompletionMessageParam(role: .user, content: prompt) else {
             throw ScreenshotError.apiError("Failed to create chat message.")

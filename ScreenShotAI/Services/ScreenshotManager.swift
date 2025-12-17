@@ -12,7 +12,7 @@ class ScreenshotManager {
             
             let process = Process()
             process.executableURL = URL(fileURLWithPath: "/usr/sbin/screencapture")
-            // -i: interactive mode (selection)
+            // -i: interactive mode
             // -r: doesn't capture shadow
             process.arguments = ["-i", "-r", temporaryFileURL.path]
             
@@ -20,7 +20,7 @@ class ScreenshotManager {
             process.waitUntilExit()
             
             if process.terminationStatus != 0 {
-                // Check if file exists, if not, it's prob cancellation
+                // Check if file exists, if not, it's cancellation
                  if !FileManager.default.fileExists(atPath: temporaryFileURL.path) {
                      // Clean up
                      try? FileManager.default.removeItem(at: temporaryFileURL)
@@ -37,7 +37,9 @@ class ScreenshotManager {
             let data: Data
             do {
                 data = try Data(contentsOf: temporaryFileURL)
+                print("DEBUG: Interactive capture successful. Image size: \(data.count) bytes")
             } catch {
+                print("ERROR: Failed to read captured data: \(error)")
                 throw ScreenshotError.invalidData
             }
             

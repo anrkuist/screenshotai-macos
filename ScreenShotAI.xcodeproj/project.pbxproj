@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8940AFF32EF1F7F800F58ABA /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 8940AFF22EF1F7F800F58ABA /* OpenAI */; };
+		8940AFF62EF1F80D00F58ABA /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 8940AFF52EF1F80D00F58ABA /* KeyboardShortcuts */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		8940AFC52EF1F78A00F58ABA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -35,16 +40,6 @@
 			path = ScreenShotAI;
 			sourceTree = "<group>";
 		};
-		8940AFC72EF1F78A00F58ABA /* ScreenShotAITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ScreenShotAITests;
-			sourceTree = "<group>";
-		};
-		8940AFD12EF1F78A00F58ABA /* ScreenShotAIUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ScreenShotAIUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +47,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8940AFF32EF1F7F800F58ABA /* OpenAI in Frameworks */,
+				8940AFF62EF1F80D00F58ABA /* KeyboardShortcuts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,10 +72,8 @@
 		8940AFAA2EF1F78700F58ABA = {
 			isa = PBXGroup;
 			children = (
-				8940AFB52EF1F78700F58ABA /* ScreenShotAI */,
-				8940AFC72EF1F78A00F58ABA /* ScreenShotAITests */,
-				8940AFD12EF1F78A00F58ABA /* ScreenShotAIUITests */,
 				8940AFB42EF1F78700F58ABA /* Products */,
+				8940AFB52EF1F78700F58ABA /* ScreenShotAI */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,6 +107,8 @@
 			);
 			name = ScreenShotAI;
 			packageProductDependencies = (
+				8940AFF22EF1F7F800F58ABA /* OpenAI */,
+				8940AFF52EF1F80D00F58ABA /* KeyboardShortcuts */,
 			);
 			productName = ScreenShotAI;
 			productReference = 8940AFB32EF1F78700F58ABA /* ScreenShotAI.app */;
@@ -129,9 +126,6 @@
 			);
 			dependencies = (
 				8940AFC62EF1F78A00F58ABA /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				8940AFC72EF1F78A00F58ABA /* ScreenShotAITests */,
 			);
 			name = ScreenShotAITests;
 			packageProductDependencies = (
@@ -152,9 +146,6 @@
 			);
 			dependencies = (
 				8940AFD02EF1F78A00F58ABA /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				8940AFD12EF1F78A00F58ABA /* ScreenShotAIUITests */,
 			);
 			name = ScreenShotAIUITests;
 			packageProductDependencies = (
@@ -195,6 +186,10 @@
 			);
 			mainGroup = 8940AFAA2EF1F78700F58ABA;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8940AFF12EF1F7F800F58ABA /* XCRemoteSwiftPackageReference "OpenAI" */,
+				8940AFF42EF1F80D00F58ABA /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8940AFB42EF1F78700F58ABA /* Products */;
 			projectDirPath = "";
@@ -549,6 +544,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8940AFF12EF1F7F800F58ABA /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MacPaw/OpenAI";
+			requirement = {
+				kind = exactVersion;
+				version = 0.4.7;
+			};
+		};
+		8940AFF42EF1F80D00F58ABA /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
+			requirement = {
+				kind = exactVersion;
+				version = 2.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8940AFF22EF1F7F800F58ABA /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8940AFF12EF1F7F800F58ABA /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAI;
+		};
+		8940AFF52EF1F80D00F58ABA /* KeyboardShortcuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8940AFF42EF1F80D00F58ABA /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8940AFAB2EF1F78700F58ABA /* Project object */;
 }
