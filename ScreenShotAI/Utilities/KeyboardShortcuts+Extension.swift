@@ -8,5 +8,5 @@
 import KeyboardShortcuts
 
 public extension KeyboardShortcuts.Name {
-    static let toggleScreenshot = Self("toggleScreenshot")
+    static let toggleScreenshot = Self("toggleScreenshot", default: .init(.x, modifiers: [.command, .shift]))
 }

@@ -11,7 +11,7 @@ import KeyboardShortcuts
 public struct SettingsView: View {
     public var body: some View {
         Form {
-            Section(header: Text("General")) {
+            Section(header: Text("Shortcut")) {
                 KeyboardShortcuts.Recorder("Capture Screenshot:", name: .toggleScreenshot)
             }
         }
