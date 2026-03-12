@@ -14,5 +14,5 @@ enum Config {
     
     // Gemini Configuration
     static let useGemini = true
-    static let geminiKey = "AIzaSyAcDvMOPBGAywC91ZIdkX4fHfOei4hXyE8"
+    static let geminiKey = "INSERT_YOUR_GEMINI_API_KEY_HERE"
 }
